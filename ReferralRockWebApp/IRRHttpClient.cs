@@ -1,8 +1,4 @@
-﻿using ReferralRockWebApp.Models;
-
-public interface IRRHttpClient
+﻿public interface IRRHttpClient
 {
-    IEnumerable<Member>? Members { get; set; }
-
-    Task OnGet();
+    Task<T?> Get<T>(string endpoint);
 }

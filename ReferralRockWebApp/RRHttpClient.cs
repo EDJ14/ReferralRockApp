@@ -9,43 +9,36 @@ using System.Text.Json;
 public class RRHttpClient : IRRHttpClient
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    private const string BaseURL = "https://api.referralrock.com/api/members";
+    private const string BaseURL = "https://api.referralrock.com/";
 
     public RRHttpClient(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
     }
 
-    public async Task OnGet()
+    public async Task<T?> Get<T>(string endpoint)
     {
-        var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://api.referralrock.com/api/members")
+        var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, BaseURL + endpoint)
         {
             Headers =
             {
                 //{ HeaderNames.Accept, "application/vnd.github.v3+json" },
                 //{ HeaderNames.UserAgent, "HttpRequestsSample" },
-                { HeaderNames.Authorization, "Basic ZGE3MTc1NTQtMzk1ZC00YmJmLWFlZTMtZmRmMDcwYWJjYmE1OmY0OTM0YzQ2LTdhY2EtNGNkZi1hOThhLTQ0YjRhYjVjNTg4Nw==" }
+                { HeaderNames.Authorization, "" }
             }
         };
 
         var httpClient = _httpClientFactory.CreateClient();
         var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
 
-        try
-        {
-            if (httpResponseMessage.IsSuccessStatusCode)
-            {
-                using var contentStream =
-                    await httpResponseMessage.Content.ReadAsStreamAsync();
 
-                var Members = await JsonSerializer.DeserializeAsync
-                    <IEnumerable<Member>>(contentStream);
-
-                var g = 'd';
-            }
-        } catch (Exception ex)
+        using var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
         {
-            var d = 'd';
+            var resp = await JsonSerializer.DeserializeAsync
+                <T>(contentStream);
+
+            return resp;
         }
+
     }
 }
