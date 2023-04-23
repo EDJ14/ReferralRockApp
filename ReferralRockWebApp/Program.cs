@@ -1,9 +1,12 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ReferralRockWebApp.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<ReferralRockWebAppContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ReferralRockWebAppContext") ?? throw new InvalidOperationException("Connection string 'ReferralRockWebAppContext' not found.")));
 builder.Services.AddHttpClient();
 builder.Services.AddTransient<IRRHttpClient, RRHttpClient>();
 

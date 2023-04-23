@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using ReferralRockWebApp.Models;
 
 namespace ReferralRockWebApp.Pages
 {
@@ -8,6 +8,7 @@ namespace ReferralRockWebApp.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly IRRHttpClient _httpClient;
+        public List<Member> Members { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger, IRRHttpClient httpClient)
         {
@@ -15,9 +16,9 @@ namespace ReferralRockWebApp.Pages
             _httpClient = httpClient;
         }
 
-        public void OnGet()
+        public async Task OnGet()
         {
-            _httpClient.OnGet();
+            Members = (await _httpClient.Get<MembersResp>("api/members"))?.members.ToList();
         }
     }
 }
