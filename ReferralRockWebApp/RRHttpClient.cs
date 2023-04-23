@@ -52,4 +52,57 @@ public class RRHttpClient : IRRHttpClient
             return resp;
         }
     }
+
+    public async Task<T?> Post<T, B>(string endpoint, B body)
+    {
+        var config = new Config();
+        Configuration.GetSection(Config.APIKeys).Bind(config);
+
+        var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, BaseURL + endpoint)
+        {
+            Headers =
+            {
+                { HeaderNames.Authorization, GetFormattedApiKey() }
+            },
+            Content = JsonContent.Create(body)
+        };
+
+
+        var httpClient = _httpClientFactory.CreateClient();
+        var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+        using var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
+        {
+            var resp = await JsonSerializer.DeserializeAsync
+                <T>(contentStream);
+
+            return resp;
+        }
+    }
+
+    public async Task<T?> Delete<T, B>(string endpoint, B body)
+    {
+        var config = new Config();
+        Configuration.GetSection(Config.APIKeys).Bind(config);
+
+        var httpRequestMessage = new HttpRequestMessage(HttpMethod.Delete, BaseURL + endpoint)
+        {
+            Headers =
+            {
+                { HeaderNames.Authorization, GetFormattedApiKey() }
+            },
+            Content = JsonContent.Create(body)
+        };
+
+        var httpClient = _httpClientFactory.CreateClient();
+        var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
+
+        using var contentStream = await httpResponseMessage.Content.ReadAsStreamAsync();
+        {
+            var resp = await JsonSerializer.DeserializeAsync
+                <T>(contentStream);
+
+            return resp;
+        }
+    }
 }

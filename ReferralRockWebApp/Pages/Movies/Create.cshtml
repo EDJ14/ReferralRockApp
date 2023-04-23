@@ -1,5 +1,5 @@
 ﻿@page
-@model ReferralRockWebApp.Pages.Members.CreateModel
+@model ReferralRockWebApp.Pages.Movies.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -32,6 +32,16 @@
                 <label asp-for="Member.email" class="control-label"></label>
                 <input asp-for="Member.email" class="form-control" />
                 <span asp-validation-for="Member.email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Member.referralCode" class="control-label"></label>
+                <input asp-for="Member.referralCode" class="form-control" />
+                <span asp-validation-for="Member.referralCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Member.referrals" class="control-label"></label>
+                <input asp-for="Member.referrals" class="form-control" />
+                <span asp-validation-for="Member.referrals" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ReferralRockWebApp.Data;
 using ReferralRockWebApp.Models;
 
-namespace ReferralRockWebApp.Pages.Members
+namespace ReferralRockWebApp.Pages.Movies
 {
     public class CreateModel : PageModel
     {

@@ -1,0 +1,65 @@
+﻿@page "{id:Guid?}"
+@model ReferralRockWebApp.Pages.Members.ReferralModel
+
+@{
+    ViewData["Title"] = "Referral";
+}
+
+<h1>Referrals for member</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Referrals[0].id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Referrals[0].firstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Referrals[0].lastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Referrals[0].email)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Referrals)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    <button onclick="" >Update</button> |
+                </td>
+                <td>
+                    <a asp-page="/Delete" asp-route-id="@item.id">Delete</a> |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <button onclick="@Html.Hidden("showAddNew", "true")">Add New Referral</button>
+</div>
+
+<div style="@(Model.showAddnew ? "display:block" : "display:none")">Some links</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

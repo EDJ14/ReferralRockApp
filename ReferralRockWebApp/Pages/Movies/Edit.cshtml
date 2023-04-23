@@ -1,0 +1,60 @@
+﻿@page
+@model ReferralRockWebApp.Pages.Movies.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Member</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Member.id" />
+            <div class="form-group">
+                <label asp-for="Member.displayName" class="control-label"></label>
+                <input asp-for="Member.displayName" class="form-control" />
+                <span asp-validation-for="Member.displayName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Member.firstName" class="control-label"></label>
+                <input asp-for="Member.firstName" class="form-control" />
+                <span asp-validation-for="Member.firstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Member.lastName" class="control-label"></label>
+                <input asp-for="Member.lastName" class="form-control" />
+                <span asp-validation-for="Member.lastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Member.email" class="control-label"></label>
+                <input asp-for="Member.email" class="form-control" />
+                <span asp-validation-for="Member.email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Member.referralCode" class="control-label"></label>
+                <input asp-for="Member.referralCode" class="form-control" />
+                <span asp-validation-for="Member.referralCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Member.referrals" class="control-label"></label>
+                <input asp-for="Member.referrals" class="form-control" />
+                <span asp-validation-for="Member.referrals" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

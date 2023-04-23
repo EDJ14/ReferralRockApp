@@ -6,13 +6,11 @@ namespace ReferralRockWebApp.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
         private readonly IRRHttpClient _httpClient;
-        public List<Member> Members { get; set; }
+        public List<Member>? Members { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IRRHttpClient httpClient)
+        public IndexModel(IRRHttpClient httpClient)
         {
-            _logger = logger;
             _httpClient = httpClient;
         }
 

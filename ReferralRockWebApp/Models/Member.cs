@@ -28,12 +28,12 @@
     //  public string? programTitle { get; set; }
     //  public string? programName { get; set; }
     //  public string? referralUrl { get; set; }
-    //  public string? referralCode { get; set; }
+        public string? referralCode { get; set; }
     //  public string? memberUrl { get; set; }
     //  public int? emailShares { get; set; }
     //  public int? socialShares { get; set; }
     //  public int? views { get; set; }
-    //  public int? referrals { get; set; }
+       public int? referrals { get; set; }
     //  public DateTime? lastShare { get; set; }
     //  public int? referralsApproved { get; set; }
     //  public int? referralsQualified { get; set; }

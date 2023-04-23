@@ -1,0 +1,19 @@
+﻿@page "{id:Guid?}"
+@model ReferralRockWebApp.Pages.Movies.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Referral</h4>
+    
+    <form method="post">
+        <input type="hidden" asp-for="referralId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
