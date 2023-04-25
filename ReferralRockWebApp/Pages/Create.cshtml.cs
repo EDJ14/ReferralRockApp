@@ -18,8 +18,12 @@ namespace ReferralRockWebApp.Pages
         public string referralCode { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public string firstName { get; set; }
+        public string? lastName { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string? firstName { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string? email { get; set; }
         public CreateModel(IRRHttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -45,6 +49,8 @@ namespace ReferralRockWebApp.Pages
             var newReferralReq = new newReferral();
             newReferralReq.referralCode = referralCode;
             newReferralReq.firstName = firstName;
+            newReferralReq.lastName = lastName;
+            newReferralReq.email = email;
 
             var memberId = (await _httpClient.Get<ReferralsResp>("api/referrals"))?.referrals.Where(r => r.memberReferralCode == referralCode).First().referringMemberId;
             await _httpClient.Post<createReferralResp, newReferral>("api/referrals", newReferralReq);

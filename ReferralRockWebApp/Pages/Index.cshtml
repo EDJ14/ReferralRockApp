@@ -4,9 +4,8 @@
     ViewData["Title"] = "Home page";
 }
 
-<p>
-    Members
-</p>
+<h1>Member List</h1>
+
 <table class="table">
     <thead>
         <tr>
@@ -42,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.email)
                 </td>
                 <td>
-                    <a asp-page="/Referral" asp-route-id="@item.id">Details</a> |
+                    <a asp-page="/Referral" asp-route-id="@item.id">Details</a>
                 </td>
             </tr>
         }

@@ -24,16 +24,21 @@ namespace ReferralRockWebApp.Pages
         public Guid? referralId { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public string? displayName { get; set; }
+        public string? lastName { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public string? firstName { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string? email { get; set; }
 
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             referralId = id;
-            firstName = (await _httpClient.Get<ReferralsResp>("api/referrals"))?.referrals.Where(r => r.id == id).First().firstName;
+            var referral = (await _httpClient.Get<ReferralsResp>("api/referrals"))?.referrals.Where(r => r.id == id).First();
+            firstName = referral?.firstName;
+            lastName = referral?.lastName;
+            email = referral?.email;
 
 
             return Page();
@@ -52,7 +57,8 @@ namespace ReferralRockWebApp.Pages
             var newReferral = new Referral();
             req.query.primaryInfo.referralId = referralId;
             newReferral.firstName = firstName;
-            newReferral.displayName = displayName;
+            newReferral.lastName = lastName;
+            newReferral.email = email;
             req.referral = newReferral;
 
             var memberId = (await _httpClient.Get<ReferralsResp>("api/referrals"))?.referrals.Where(r => r.id == referralId).First().referringMemberId;

@@ -5,7 +5,7 @@
     ViewData["Title"] = "Referral";
 }
 
-<h1>Referrals for member</h1>
+<h1>Referrals for @Model.memberName</h1>
 
 <table class="table">
     <thead>
@@ -53,12 +53,13 @@
     </tbody>
 </table>
 
-<div>
-    <input hidden type="text" asp-for="memberId" value=@Model.memberId />
-    <a asp-page="/Create" asp-route-id="@Model.memberId">Add New Referral</a>
-</div>
+<div style="display: flex; justify-content:space-between">
+    <div>
+        <a asp-page="Index">Back to Member List</a>
+    </div>
 
-<div>
-    <a asp-page="Index">Back to Member List</a>
+    <div>
+        <input hidden type="text" asp-for="memberId" value=@Model.memberId />
+        <a asp-page="/Create" asp-route-id="@Model.memberId">Add New Referral</a>
+    </div>
 </div>
-
