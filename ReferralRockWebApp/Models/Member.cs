@@ -1,12 +1,19 @@
-﻿namespace ReferralRockWebApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ReferralRockWebApp.Models
 {
     public class Member
     {
+      [Display(Name = "Member ID")]
       public Guid id { get; set; }
-      public string? displayName { get; set; }
+      
+      [Display(Name = "First Name")]
       public string? firstName { get; set; }
+      [Display(Name = "Last Name")]
       public string? lastName { get; set; }
+      [Display(Name = "Email")]
       public string? email { get; set; }
+    //public string? displayName { get; set; }
     //  public string? phone { get; set; }
     //  public string? externalIdentifier { get; set; }
     //  public string? dateOfBirth { get; set; }
