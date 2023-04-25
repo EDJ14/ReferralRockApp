@@ -9,19 +9,18 @@ using Microsoft.EntityFrameworkCore;
 using ReferralRockWebApp.Data;
 using ReferralRockWebApp.Models;
 
-namespace ReferralRockWebApp.Pages.Movies
+namespace ReferralRockWebApp.Pages
 {
     public class DeleteModel : PageModel
     {
         private readonly IRRHttpClient _httpClient;
-        public string referralId { get; set; }
 
         public DeleteModel(IRRHttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<IActionResult> OnGetAsync(string? id)
+        public async Task<IActionResult> OnGetAsync(Guid? id)
         {
             if (id == null)
             {
@@ -34,12 +33,12 @@ namespace ReferralRockWebApp.Pages.Movies
                 {
                     primaryInfo = new primaryInfo
                     {
-                        referralId = referralId
+                        referralId = id
                     }
                 }
             };
 
-            var resp = await _httpClient.Delete<DeleteReferralResp, List<DeleteReferralReq>>("api/referral/remove", new List<DeleteReferralReq>() { deleteRequest });
+            var resp = await _httpClient.Delete<List<DeleteReferralResp>, List<DeleteReferralReq>>("api/referral/remove", new List<DeleteReferralReq>() { deleteRequest });
 
             return Page();
         }

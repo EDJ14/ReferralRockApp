@@ -9,5 +9,11 @@
         public string fullName { get; set; } = "";
         public string email { get; set; } = "";
         public string memberReferralCode { get; set; } = "";
+        public Guid? referringMemberId { get; set; }
+    }
+
+    public class newReferral : Referral
+    {
+        public string referralCode { get; set; }
     }
 }

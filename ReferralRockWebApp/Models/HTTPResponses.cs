@@ -31,12 +31,12 @@
 
     public class primaryInfo
     {
-        public string referralId { get; set; }
+        public Guid? referralId { get; set; }
     }
 
     public class query
     {
-        public primaryInfo primaryInfo { get; set; }
+        public primaryInfo primaryInfo { get; set; } = new primaryInfo();
     }
 
     public class DeleteReferralReq
@@ -54,5 +54,17 @@
     {
         public query query { get; set; }
         public resultInfo resultInfo { get; set; }
+    }
+
+    public class UpdateReferralReq
+    {
+        public query query { get; set; } = new query();
+        public Referral referral { get; set; } = new Referral();
+    }
+
+    public class createReferralResp
+    {
+        public string message { get; set; }
+        public Referral? referral { get; set; }
     }
 }

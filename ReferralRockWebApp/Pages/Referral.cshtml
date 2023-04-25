@@ -43,10 +43,10 @@
                     @Html.DisplayFor(modelItem => item.email)
                 </td>
                 <td>
-                    <button onclick="" >Update</button> |
+                    <a asp-page="/Edit" asp-route-id="@item.id">Update</a>
                 </td>
                 <td>
-                    <a asp-page="/Delete" asp-route-id="@item.id">Delete</a> |
+                    <a asp-page="/Delete" asp-route-id="@item.id">Delete</a>
                 </td>
             </tr>
         }
@@ -54,12 +54,11 @@
 </table>
 
 <div>
-    <button onclick="@Html.Hidden("showAddNew", "true")">Add New Referral</button>
+    <input hidden type="text" asp-for="memberId" value=@Model.memberId />
+    <a asp-page="/Create" asp-route-id="@Model.memberId">Add New Referral</a>
 </div>
 
-<div style="@(Model.showAddnew ? "display:block" : "display:none")">Some links</div>
-
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Back to Member List</a>
 </div>
 

@@ -1,0 +1,30 @@
+﻿@page "{id:Guid?}"
+@model ReferralRockWebApp.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Referral</h4>
+<hr />
+<form asp-page-handler="button" method="post">
+    <input hidden type="text" asp-for="referralCode" value=@Model.referralCode />
+@*    <p>
+        Display Name: <input type="text" asp-for="displayName" />
+    </p>*@
+    <p>
+        First Name: <input type="text" asp-for="firstName" />
+    </p>
+    <button type="submit" class="btn btn-default">Button</button>
+</form>
+
+
+<div>
+    <a asp-page="Index">Back to Member List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

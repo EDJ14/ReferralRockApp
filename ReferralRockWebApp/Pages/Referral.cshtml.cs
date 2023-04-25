@@ -26,14 +26,11 @@ namespace ReferralRockWebApp.Pages.Members
         public async Task OnGet(Guid? id)
         {
             memberId = id;
-            Referrals = (await _httpClient.Get<ReferralsResp>("api/referrals"))?.referrals.ToList();
-            memberReferralCode = Referrals.FirstOrDefault().memberReferralCode;
+            Referrals = (await _httpClient.Get<ReferralsResp>("api/referrals"))?.referrals.Where(r => r.referringMemberId == memberId).ToList();
+            memberReferralCode = Referrals.FirstOrDefault()?.memberReferralCode;
         }
         
-        public void onAddNew()
-        {
-            showAddnew = true;
-        }
+
         //[BindProperty]
         //public Member Member { get; set; } = default!;
         
