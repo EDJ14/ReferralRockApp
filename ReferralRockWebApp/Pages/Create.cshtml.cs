@@ -52,7 +52,8 @@ namespace ReferralRockWebApp.Pages
             newReferralReq.lastName = lastName;
             newReferralReq.email = email;
 
-            var memberId = (await _httpClient.Get<ReferralsResp>("api/referrals"))?.referrals.Where(r => r.memberReferralCode == referralCode).First().referringMemberId;
+            var memberId = (await _httpClient.Get<MembersResp>("api/members"))?.members.First(x => x.referralCode == referralCode).id;
+
             await _httpClient.Post<createReferralResp, newReferral>("api/referrals", newReferralReq);
 
             return RedirectToPage("./Referral", new { id = memberId });
